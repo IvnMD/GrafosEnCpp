@@ -6,14 +6,14 @@ Kruskal, lectura de grafos desde fichero y validación mediante casos de prueba.
 
 ---
 
-## 👨‍💻 Autor
+##  Autor
 **Iván Mesa Domínguez**  
 🔗 GitHub: https://github.com/IvnMD  
-🎓 Universidad de La Laguna – Ingeniería Informática  
+ Universidad de La Laguna – Ingeniería Informática  
 
 ---
 
-## 🧠 Objetivos del proyecto
+##  Objetivos del proyecto
 - Implementar grafos mediante estructuras eficientes en C++
 - Aplicar algoritmos clásicos sobre grafos
 - Leer y procesar grafos desde ficheros `.gr`
@@ -22,7 +22,7 @@ Kruskal, lectura de grafos desde fichero y validación mediante casos de prueba.
 
 ---
 
-## 🛠 Tecnologías utilizadas
+##  Tecnologías utilizadas
 - **Lenguaje:** C++
 - **Paradigmas:** Programación estructurada y modular
 - **Compilación:** g++
@@ -31,7 +31,7 @@ Kruskal, lectura de grafos desde fichero y validación mediante casos de prueba.
 
 ---
 
-## 📂 Estructura del repositorio
+##  Estructura del repositorio
 
 ### OPT3_2024
 - Implementación básica de grafos
@@ -50,7 +50,7 @@ Kruskal, lectura de grafos desde fichero y validación mediante casos de prueba.
 
 ---
 
-## ▶️ Compilación y ejecución
+## Compilación y ejecución
 
 Ejemplo de compilación:
 
