@@ -191,12 +191,18 @@ int main(int argc, char *argv[])
                 //     clrscr();
                 //     break;
 
-                // case 'b' :
-                //     clrscr();
-                //     G.BellmanFordEnd_();
-                //     pressanykey();
-                //     clrscr();
-                //     break;
+                case 'b' :
+                    clrscr();
+                    {
+                        double comparaciones = 0;
+                        unsigned s;
+                        cout << "Introduce el nodo de partida: ";
+                        cin >> s;
+                        G.BellmanFordEnd_(comparaciones, s - 1);
+                    }
+                    pressanykey();
+                    clrscr();
+                    break;
 
                 case 't' :
                     clrscr();
@@ -225,6 +231,3 @@ int main(int argc, char *argv[])
     cout << "Fin del programa" << endl;
 	return(0);
 };
-
-
-

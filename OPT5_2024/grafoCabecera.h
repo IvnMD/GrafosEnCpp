@@ -1,11 +1,19 @@
 /*
- *  GRAFO.h - plantilla para los alumnos y alumnas de definicion de la clase GRAFO
+ * Proyecto: Grafos y Algoritmos en C++
+ * Autor: Iván Mesa Domínguez
+ * GitHub: https://github.com/IvnMD
+ * Año: 2024
  *
- *  Autores : Antonio Sedeno Noda, Sergio Alonso
- *  Cursos  : 2012-2021
- * 
- * Compilacion Windows: g++ -g grafo2024.cpp mainGrafo2024.cpp -o Grafo4
+ * Descripción:
+ * Implementación de estructuras de grafos y algoritmos asociados
+ * (Kruskal, lectura de grafos desde fichero, pruebas y validaciones).
+ *
+ * Contexto académico:
+ * Universidad de La Laguna – Ingeniería Informática
+ *
+ * Creado por IvnMD
  */
+
 
 #ifndef _GRAPH_H
 #define _GRAPH_H
@@ -62,12 +70,12 @@ class GRAFO
 	void build (char nombrefichero[85], int &errorapertura); //Crea LS, A y LP en su caso, desde la lectura del fichero
 	void dfs_num(unsigned i, vector<LA_nodo>  L, vector<bool> &visitado, vector<unsigned> &prenum, unsigned &prenum_ind, vector<unsigned> &postnum, unsigned &postnum_ind); //Recorrido en profundidad recursivo con recorridos enum y postnum
      void bfs_num(unsigned i, vector<LA_nodo>  L, vector<unsigned> &pred, vector<unsigned> &d); //Recorrido en amplitud con calculo de pred y d
-     void BellmanFordEnd_(double &comparaciones, unsigned s); //double &comparaciones, unsigned int s
-     void Dijkstra_(double &comparaciones, unsigned s); //double &comparaciones, unsigned int s
      
 
 public:
      GRAFO(char nombrefichero[], int &errorapertura);
+     void BellmanFordEnd_(double &comparaciones, unsigned s); //double &comparaciones, unsigned int s
+     void Dijkstra_(double &comparaciones, unsigned s); //double &comparaciones, unsigned int s
      void actualizar (char nombrefichero[], int &errorapertura);
      unsigned Es_dirigido(); // devuelve 0 si el grafo es no dirigido y 1 si es dirigido
      void Info_Grafo(); // devuelve informaci�n b�sica del grafo

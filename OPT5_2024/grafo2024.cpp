@@ -1,12 +1,19 @@
- /*
- *  GRAFO.CPP - Plantilla para la implementaci�n de la clase GRAFOS
+/*
+ * Proyecto: Grafos y Algoritmos en C++
+ * Autor: Iván Mesa Domínguez
+ * GitHub: https://github.com/IvnMD
+ * Año: 2024
  *
+ * Descripción:
+ * Implementación de estructuras de grafos y algoritmos asociados
+ * (Kruskal, lectura de grafos desde fichero, pruebas y validaciones).
  *
- *  Autores : Antonio Sedeno Noda, Sergio Alonso
- *  Cursos   : 2012-2021
- * 
- * Compilacion Windows: g++ -g grafo2024.cpp mainGrafo2024.cpp -o Grafo4
+ * Contexto académico:
+ * Universidad de La Laguna – Ingeniería Informática
+ *
+ * Creado por IvnMD
  */
+
 
 #include "grafoCabecera.h"
 
@@ -31,9 +38,11 @@ void GRAFO :: build (char nombrefichero[85], int &errorapertura)
 {
     ElementoLista     dummy;
 	ifstream textfile;
+    n = 0; // Inicializamos n a 0 por seguridad
 	textfile.open(nombrefichero);
 	if (textfile.is_open())
     {
+        errorapertura = 0;
 		unsigned i, j, k;
 		// leemos por conversion implicita el numero de nodos, arcos y el atributo dirigido
 		textfile >> (unsigned &) n >> (unsigned &) m >> (unsigned &) dirigido;
@@ -41,7 +50,7 @@ void GRAFO :: build (char nombrefichero[85], int &errorapertura)
 		// creamos las n listas de sucesores
 		LS.resize(n);
         LP.resize(n);
-        A.resize(n+1);
+        A.resize(n);
         ElementoLista aux;
         aux.j = 0;
         aux.c = 0;
@@ -88,6 +97,8 @@ void GRAFO :: build (char nombrefichero[85], int &errorapertura)
                 A[j-1][i-1].c = dummy.c;
             }
         }
+    } else {
+        errorapertura = 1;
     }
 }
 
@@ -509,50 +520,44 @@ void MostrarCamino(unsigned s, unsigned i, vector<unsigned> pred)
 // El parámetro "comparaciones" se utiliza para contar el número de comparaciones que se hacen durante la ejecución del algoritmo.
 // El parámetro "s" es el nodo de origen desde el que se inicia la búsqueda del camino más corto.
 void GRAFO::Dijkstra_(double &comparaciones, unsigned s) {
-  vector<bool> PermanentementeEtiquetado;// Se crean tres vectores para almacenar información sobre los nodos: PermanentementeEtiquetado para marcar los nodos que ya se han etiquetado de forma permanente.
-  vector<int> d;                        // d para almacenar las etiquetas de distancia y pred para almacenar los predecesores en el camino más corto.
-  vector<unsigned> pred;               // pred para almacenar los predecesores en el camino más corto.
-  int min;
-  unsigned candidato = s;
-  // Al principio no hay nodos permanente etiquetados
-  PermanentementeEtiquetado.resize(n,false); // n, numero de nodos
-  // Al principio todas las etiquetas distancia son infinitas
-  d.resize(n,maxint);
-  // Al principio el pred es null == predecesores
-  pred.resize(n,UERROR);
-  // La etiqueta distancia del nodo origen es 0, y es su propio pred
+  vector<bool> PermanentementeEtiquetado(n, false);
+  vector<int> d(n, maxint);
+  vector<unsigned> pred(n, UERROR);
+
   d[s] = 0;
   pred[s] = s;
   comparaciones = 0; 
-  // Se inicia un bucle que se ejecuta mientras haya nodos que no estén etiquetados de forma permanente.
-  do {
-  min = maxint;
-  /* Buscamos un nodo candidato a ser permanentemente etiquedado: aquel de
-  entre los no permanentemente etiquetados, es decir, en el almacén con menor
-  etiqueta distancia no infinita. */
- 
-  // Evaluamos los caminos.
-  // Si existe ese candidato, lo etiquetamos permanentemente y usamos los arcos de la lista de sucesores para buscar atajos.Esto lo hacemos mientras haya candidatos
 
-    for (unsigned k = 0; k < LS[candidato].size(); k++){ // Este bucle recorre los sucesores del nodo candidato en el grafo.
-      if(PermanentementeEtiquetado[LS[candidato][k].j] == false){ // Comprueba si el sucesor no está permanentemente etiquetado.
+  while (true) {
+    int min = maxint;
+    unsigned candidato = UERROR;
+
+    // 1. Selección: Buscamos el nodo no etiquetado con menor distancia
+    for (unsigned i = 0; i < n; i++) {
+      if (!PermanentementeEtiquetado[i] && d[i] < min) {
+        min = d[i];
+        candidato = i;
+      }
+    }
+
+    if (candidato == UERROR || min == maxint) break; // No hay más nodos alcanzables
+
+    PermanentementeEtiquetado[candidato] = true;
+
+    // 2. Relajación: Actualizamos distancias de los vecinos
+    for (unsigned k = 0; k < LS[candidato].size(); k++) {
+      unsigned vecino = LS[candidato][k].j;
+      int coste = LS[candidato][k].c;
+      if (!PermanentementeEtiquetado[vecino]) {
         comparaciones++;
-        if ((d[LS[candidato][k].j]) > (d[candidato] + LS[candidato][k].c)){   // Comprueba si se encuentra un camino más corto a través del nodo candidato.
-          d[LS[candidato][k].j] = (d[candidato] + LS[candidato][k].c);
-          pred[LS[candidato][k].j] = candidato;
+        if (d[vecino] > d[candidato] + coste) {
+          d[vecino] = d[candidato] + coste;
+          pred[vecino] = candidato;
         }
       }
     }
-  for(int i = 0; i < n; i++) { // Este bucle busca el nodo no permanentemente etiquetado con la etiqueta de distancia mínima.
-    if ((PermanentementeEtiquetado[i] == false) && (d[i] < min)) {
-      candidato = i;
-      min = d[i];
-    }
   }
 
-  PermanentementeEtiquetado[candidato] = true; // Se marca el nodo candidato como permanentemente etiquetado.
- 
-  } while (min < maxint); // Se repite el bucle mientras haya nodos no permanentemente etiquetados con etiquetas de distancia finitas.
     std::cout << endl; // Se imprimen los resultados de los caminos más cortos y sus longitudes.
     for (unsigned i = 0; i < n; i++) {
       if (i != s) {
@@ -576,7 +581,7 @@ void GRAFO::BellmanFordEnd_(double &comparaciones, unsigned s) {
   // Se crean los vectores para almacenar las distancias y los predecesores.
   vector<int> d;
   vector<unsigned> pred;
-  unsigned numeromejoras = 0;
+  unsigned iteraciones = 0;
   bool mejora;
  // Se establece el tamaño de los vectores de distancias y predecesores.
   d.resize(n,maxint);
@@ -587,8 +592,10 @@ void GRAFO::BellmanFordEnd_(double &comparaciones, unsigned s) {
   comparaciones = 0;
   do { // Se inicia el bucle principal del algoritmo de Bellman-Ford.
     mejora = false;
+    iteraciones++;
     // Se recorren todos los arcos del grafo. (i, j)
     for(unsigned i = 0; i < n; i++) { // Se recorren todos los arcos del grafo. (i, j)
+      if (d[i] == maxint) continue;
       for(unsigned j = 0; j < LS[i].size(); j++){
         unsigned destino = LS[i][j].j;
         int peso = LS[i][j].c;
@@ -598,12 +605,11 @@ void GRAFO::BellmanFordEnd_(double &comparaciones, unsigned s) {
           d[destino] = d[i] + peso;
           pred[destino] = i;
           mejora = true;
-          numeromejoras++;
         }
       }
     }
   } 
-  while ((numeromejoras < n + 1 && mejora)); 
+  while ((iteraciones < n && mejora)); 
   // Se muestra el resultado del algoritmo
       for (unsigned i = 0; i < n; i++) {
         if (i != s && pred[i] != UERROR) {
@@ -615,8 +621,8 @@ void GRAFO::BellmanFordEnd_(double &comparaciones, unsigned s) {
         std::cout << "ERROR. No hay camino desde: " << s + 1 <<" al nodo " << i + 1 <<endl;
           }
         }
-        std::cout << "Ha realizado un total de: " << comparaciones << " comparaciones." << endl;    
   }
+  std::cout << "Ha realizado un total de: " << comparaciones << " comparaciones." << endl;    
 }
 
 
@@ -642,7 +648,11 @@ void GRAFO::ComparativaCM(){
   std::cout << endl;
   // Se muestra la comparativa entre los algoritmos de Dijkstra y Bellman-Ford.
   std::cout << "El algoritmo de general basado en la condición de optimalidad, Bellman, Ford, End, ha realizado ";
-  std::cout << CompBellman / CompDijkstra;
+  if (CompDijkstra > 0) {
+    std::cout << CompBellman / CompDijkstra;
+  } else {
+    std::cout << "infinitas";
+  }
   std::cout << " veces más comparaciones para mejorar la etiqueta distancia que Dijkstra\n" << std::endl;;
 }
 
@@ -738,7 +748,7 @@ void GRAFO::Kruskal()
     // Miramos si los extremos de la arista en la posicion head estan en componentes conexas distintas,
     // y si es asi, metemos esa arista en el MST fusionando las componentes conexas, es decir, unificando etiquetas.
     if (Raiz[Aristas[head].extremo1] != Raiz[Aristas[head].extremo2]) {
-      int kill = Raiz[Aristas[head].extremo1];  // Almacena el valor de la raíz del componente conexo del extremo 1 de la arista en la posición head.
+      unsigned kill = Raiz[Aristas[head].extremo1];  // Almacena el valor de la raíz del componente conexo del extremo 1 de la arista en la posición head.
       for (unsigned k = 0; k < n; k++) {       // Itera sobre todos los nodos del grafo.
         if (Raiz[k] == kill) { 
           Raiz[k] = Raiz[Aristas[head].extremo2];
@@ -803,14 +813,15 @@ void GRAFO::PDM() {
             int peso = LS[k][i].c;
 
             if (d[j] > d[k] + peso) {
+                bool was_visited = (d[j] != maxint);
                 d[j] = d[k] + peso;
                 pred[j] = k;
 
                 if (!Encola[j]) {
-                    if (pred[j] == UERROR) {
-                        dcola.push_back(j);
-                    } else {
+                    if (was_visited) {
                         dcola.push_front(j);
+                    } else {
+                        dcola.push_back(j);
                     }
                     Encola[j] = true;
                 }
@@ -823,7 +834,7 @@ void GRAFO::PDM() {
         if (i != s && pred[i] != UERROR) {
             cout << "El camino desde " << s + 1 << " al nodo " << i + 1 << " es: ";
             MostrarCaminoPDM(s, i, pred);
-            cout << i + 1 << " de longitud " << d[i] << endl;
+            cout << " de longitud " << d[i] << endl;
         }
     }
 }
