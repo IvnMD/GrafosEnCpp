@@ -1,4 +1,4 @@
-# 📊 Grafos y Algoritmos en C++ (ULL)
+#  Grafos y Algoritmos en C++ (ULL)
 
 Proyecto académico desarrollado en **C++** centrado en la implementación,
 gestión y prueba de **estructuras de grafos y algoritmos clásicos**, como
