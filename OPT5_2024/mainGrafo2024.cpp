@@ -14,19 +14,27 @@
  * Creado por IvnMD
  */
 
-
 #include <string.h>
 #include "grafoCabecera.h"
 
 
 void clrscr()
 {
+#ifdef _WIN32
     system("cls");
+#else
+    system("clear");
+#endif
 }
 
 void pressanykey()
 {
+#ifdef _WIN32
     system("pause");
+#else
+    cout << "Presione Enter para continuar..." << endl;
+    system("read dummy");
+#endif
 }
 
 void menu (unsigned dirigido, char &opcion)
@@ -47,9 +55,9 @@ void menu (unsigned dirigido, char &opcion)
             cout << "i. Mostrar [i]nformacion basica del grafo" << endl;
             cout << "s. Mostrar la lista de [s]ucesores del grafo" << endl;
             cout << "p. Mostrar la lista de [p]redecesores del grafo" << endl;
-            cout << "f. Caminos minimos: [f]loyd-warhall" << endl;
-            // cout << "d. Caminos minimos: [d]ijkstra" << endl;
-            cout << "d. Caminos minimos: P[d]M" << endl;
+            cout << "f. Caminos minimos: [f]loyd-warshall" << endl;
+            cout << "d. Caminos minimos: [d]ijkstra" << endl;
+            cout << "x. Caminos minimos: PDM" << endl;
             cout << "b. Caminos minimos: [b]ellman Ford End" << endl;
             cout << "t. Caminos minimos: Compara[t]iva Dijkstra vs Bellman Ford End" << endl;
 	        
@@ -165,7 +173,7 @@ int main(int argc, char *argv[])
 
                 case 'f' :
                     clrscr();
-                    G.Floyd_Warhall();
+                    G.Floyd_Warshall();
                     pressanykey();
                     clrscr();
                     break;
@@ -184,21 +192,27 @@ int main(int argc, char *argv[])
                     clrscr();
                     break;
 
-                // case 'd' :
-                //     clrscr();
-                //     G.Dijkstra_();
-                //     pressanykey();
-                //     clrscr();
-                //     break;
+                case 'd' :
+                    clrscr();
+                    {
+                        unsigned s;
+                        double comp;
+                        cout << "Introduce el nodo de partida: ";
+                        cin >> s;
+                        G.Dijkstra_(comp, s - 1);
+                    }
+                    pressanykey();
+                    clrscr();
+                    break;
 
                 case 'b' :
                     clrscr();
                     {
-                        double comparaciones = 0;
                         unsigned s;
+                        double comp;
                         cout << "Introduce el nodo de partida: ";
                         cin >> s;
-                        G.BellmanFordEnd_(comparaciones, s - 1);
+                        G.BellmanFordEnd_(comp, s - 1);
                     }
                     pressanykey();
                     clrscr();
@@ -218,7 +232,7 @@ int main(int argc, char *argv[])
                     clrscr();
                     break;
                 
-                case 'd' :
+                case 'x' :
                     clrscr();
                     G.PDM();
                     pressanykey();
