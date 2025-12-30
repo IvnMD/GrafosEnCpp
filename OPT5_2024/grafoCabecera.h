@@ -1,15 +1,15 @@
 /*
  * Proyecto: Grafos y Algoritmos en C++
- * Autor: Iván Mesa Domínguez
+ * Autor: Ivan Mesa Dominguez
  * GitHub: https://github.com/IvnMD
- * Año: 2024
+ * Anyo: 2024
  *
- * Descripción:
- * Implementación de estructuras de grafos y algoritmos asociados
+ * Descripcion:
+ * Implementacion de estructuras de grafos y algoritmos asociados
  * (Kruskal, lectura de grafos desde fichero, pruebas y validaciones).
  *
- * Contexto académico:
- * Universidad de La Laguna – Ingeniería Informática
+ * Contexto academico:
+ * Universidad de La Laguna – Ingenieria Informatica
  *
  * Creado por IvnMD
  */
@@ -29,7 +29,7 @@
 using namespace std;
 
 const unsigned UERROR = 65000; //Para ciertos algoritmos es necesario codificar este valor de error
-const int maxint = 1000000; //Para ciertos algoritmos es necesario codificar este valor de m�ximo
+const int maxint = 1000000; //Para ciertos algoritmos es necesario codificar este valor de maximo
 
 
 
@@ -62,8 +62,8 @@ private:
 	unsigned            dirigido;  //0 si el grafo es no dirigido y 1 si es dirigido
 	unsigned            n;         // numero de NODOS
 	unsigned            m;         // numero de ARCOS
-	vector<LA_nodo>     LS;        // Lista de adyacencia de los sucesores: es una matriz dode cada fila posiblemente es posiblemente de distinto tama�o
-	vector<LA_nodo>     LP;        // Lista de adyacencia de los predecesores: es una matriz dode cada fila posiblemente es posiblemente de distinto tama�o
+	vector<LA_nodo>     LS;        // Lista de adyacencia de los sucesores: es una matriz dode cada fila posiblemente es posiblemente de distinto tamanyo
+	vector<LA_nodo>     LP;        // Lista de adyacencia de los predecesores: es una matriz dode cada fila posiblemente es posiblemente de distinto tamanyo
 	vector<LA_nodo>     A;         // Matriz de adyacencia, tanto adyacencia como costes
      
 	void destroy();                // Destructor del LS, A, y LP, en su caso
@@ -76,7 +76,7 @@ public:
      GRAFO(char nombrefichero[], int &errorapertura);
      void actualizar (char nombrefichero[], int &errorapertura);
      unsigned Es_dirigido(); // devuelve 0 si el grafo es no dirigido y 1 si es dirigido
-     void Info_Grafo(); // devuelve informaci�n b�sica del grafo
+     void Info_Grafo(); // devuelve informacion basica del grafo
      void Mostrar_Listas(int l);  //Muestra la lista de adyacencia
      void Mostrar_Matriz(); //Muestra la matriz de adyacencia: nodos y costes
      void ListaPredecesores(); //Recorre la lista de sucesores LS para construir la de predecesores, LP

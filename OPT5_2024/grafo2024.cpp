@@ -1,15 +1,15 @@
 /*
  * Proyecto: Grafos y Algoritmos en C++
- * Autor: Iván Mesa Domínguez
+ * Autor: Ivan Mesa Dominguez
  * GitHub: https://github.com/IvnMD
- * Año: 2024
+ * Anyo: 2024
  *
- * Descripción:
- * Implementación de estructuras de grafos y algoritmos asociados
+ * Descripcion:
+ * Implementacion de estructuras de grafos y algoritmos asociados
  * (Kruskal, lectura de grafos desde fichero, pruebas y validaciones).
  *
- * Contexto académico:
- * Universidad de La Laguna – Ingeniería Informática
+ * Contexto academico:
+ * Universidad de La Laguna – Ingenieria Informatica
  *
  * Creado por IvnMD
  */
@@ -219,27 +219,27 @@ void GRAFO::dfs_num(unsigned i, const vector<LA_nodo> &L, vector<bool> &visitado
 }
 
 void GRAFO::RecorridoProfundidad() {
-  // 1. Declaración de variables
+  // 1. Declaracion de variables
   unsigned num_nod; // Almacena el nodo inicial elegido por el usuario (sin ajustar)
-  vector<bool> visitado(n); // Vector para marcar nodos visitados (tamaño n)
-  vector<unsigned> prenum(n); // Vector para almacenar el orden de pre-visita (tamaño n)
-  unsigned prenum_ind = 0; // Índice para asignar valores a prenum (inicializado a 0)
-  vector<unsigned> postnum(n); // Vector para almacenar el orden de post-visita (tamaño n)
-  unsigned postnum_ind = 0; // Índice para asignar valores a postnum (inicializado a 0)
+  vector<bool> visitado(n); // Vector para marcar nodos visitados (tamanyo n)
+  vector<unsigned> prenum(n); // Vector para almacenar el orden de pre-visita (tamanyo n)
+  unsigned prenum_ind = 0; // Indice para asignar valores a prenum (inicializado a 0)
+  vector<unsigned> postnum(n); // Vector para almacenar el orden de post-visita (tamanyo n)
+  unsigned postnum_ind = 0; // Indice para asignar valores a postnum (inicializado a 0)
 
   // 2. Reserva de memoria para vectores
-  visitado.resize(n); // Reserva memoria para 'visitado' con tamaño n
-  prenum.resize(n); // Reserva memoria para 'prenum' con tamaño n
-  postnum.resize(n); // Reserva memoria para 'postnum' con tamaño n
+  visitado.resize(n); // Reserva memoria para 'visitado' con tamanyo n
+  prenum.resize(n); // Reserva memoria para 'prenum' con tamanyo n
+  postnum.resize(n); // Reserva memoria para 'postnum' con tamanyo n
 
   // 3. Solicitar nodo inicial
   std::cout << "Elija el nodo de partida? [1-" << n << "]: ";
   std::cin >> num_nod;
 
   // 4. Ajuste del nodo inicial (de externo a interno)
-  num_nod--; // Resta 1 para ajustar el nodo inicial al índice interno (0 a n-1)
+  num_nod--; // Resta 1 para ajustar el nodo inicial al indice interno (0 a n-1)
 
-  // 5. Llamada a la función dfs_num para el recorrido DFS
+  // 5. Llamada a la funcion dfs_num para el recorrido DFS
   dfs_num(num_nod, LS, visitado, prenum, prenum_ind, postnum, postnum_ind);
 
   // 6. Imprimir orden de visita en preorden
@@ -248,7 +248,7 @@ void GRAFO::RecorridoProfundidad() {
     if (i < prenum.size() - 1) {
       std::cout << "[" << prenum[i] + 1 << "] -> "; // Imprime nodo en preorden + 1 (ajuste externo) y flecha
     } else {
-      std::cout << "[" << prenum[i] + 1 << "]"; // Imprime el último nodo en preorden + 1 (ajuste externo)
+      std::cout << "[" << prenum[i] + 1 << "]"; // Imprime el ultimo nodo en preorden + 1 (ajuste externo)
     }
   }
   std::cout << std::endl;
@@ -259,7 +259,7 @@ void GRAFO::RecorridoProfundidad() {
     if (i < postnum.size() - 1) {
       std::cout << "[" << postnum[i] + 1 << "] -> "; // Imprime nodo en postorden + 1 y flecha
     } else {
-      std::cout << "[" << postnum[i] + 1 << "]"; // Imprime el último nodo en postorden + 1 
+      std::cout << "[" << postnum[i] + 1 << "]"; // Imprime el ultimo nodo en postorden + 1 
     }
   }
   std::cout << std::endl;
@@ -269,7 +269,7 @@ void GRAFO::bfs_num(	unsigned i, //nodo desde el que realizamos el recorrido en 
 				const vector<LA_nodo> &L, //lista que recorremos, LS o LP; por defecto LS
 				vector<unsigned> &pred, //vector de predecesores en el recorrido
 				vector<unsigned> &d) //vector de distancias a nodo i+1
-//Recorrido en amplitud con la construcci�n de pred y d: usamos la cola
+//Recorrido en amplitud con la construccion de pred y d: usamos la cola
 {
     vector<bool> visitado; //creamos e iniciamos el vector visitado
     visitado.resize(n, false);  
@@ -313,7 +313,7 @@ void GRAFO::Floyd_Warshall(){
     P[i].resize(n); //Ya tenemos la matriz cuadrada
   for (unsigned i=0;i<n;i++){
     for (unsigned j=0;j<n;j++){
-      //Inicializaci�n base
+      //Inicializacion base
       if (i != j) {
         P[i][j].j = 0; //en el campo .j ponemos el predecesor
         P[i][j].c = maxint; // en el campo .c ponemos el coste
@@ -400,7 +400,7 @@ std::cout << std::endl;
 
 
 void GRAFO::RecorridoAmplitud() { //Construye un recorrido en amplitud desde un nodo inicial
-  // 1. Declaración de variables
+  // 1. Declaracion de variables
   int nodo{0}; // Almacena el nodo inicial elegido por el usuario (sin ajustar)
 
   // 2. Salida informativa
@@ -409,21 +409,21 @@ void GRAFO::RecorridoAmplitud() { //Construye un recorrido en amplitud desde un 
   std::cin >> nodo;
 
   // 3. Ajuste del nodo inicial (de externo a interno)
-  nodo--; // Resta 1 para ajustar el nodo inicial al índice interno (0 a n-1)
+  nodo--; // Resta 1 para ajustar el nodo inicial al indice interno (0 a n-1)
 
-  // 4. Declaración de estructuras de datos
-  vector<unsigned> pred(n); // Vector para almacenar predecesores (tamaño n)
-  vector<unsigned> d(n); // Vector para almacenar distancias (tamaño n)
+  // 4. Declaracion de estructuras de datos
+  vector<unsigned> pred(n); // Vector para almacenar predecesores (tamanyo n)
+  vector<unsigned> d(n); // Vector para almacenar distancias (tamanyo n)
 
-  // 5. Llamada a la función bfs_num para el recorrido BFS
+  // 5. Llamada a la funcion bfs_num para el recorrido BFS
   bfs_num(nodo, LS, pred, d);
 
   // 6. Imprimir distancias y nodos
-  unsigned e = 0; // Variable para almacenar la distancia máxima
+  unsigned e = 0; // Variable para almacenar la distancia maxima
   std::cout << "Nodos segun distancia al nodo inicial en numero de aristas" << endl;
   std::cout << "Distancia de 0 aristas : " << nodo + 1 << std::endl; // Imprimir nodo inicial con ajuste
 
-  // 7. Calcular la distancia máxima
+  // 7. Calcular la distancia maxima
   for (unsigned a = 0; a < n; ++a) {
     if (d[a] > e) {
       e = d[a];
@@ -463,24 +463,24 @@ void GRAFO::Prim(){
   // // std::cout << "Ingrese el nodo inicial: ";
   // // unsigned nodo_inicio;
   // // std::cin >> nodo_inicio{0};
-  // // nodo_inicio--; // Restamos 1 al nodo inicial para ajustar al índice del vector
+  // // nodo_inicio--; // Restamos 1 al nodo inicial para ajustar al indice del vector
   unsigned contador_T = 0; // T en pseudocodigo
-  std::vector<int> coste; // Vector que almacena el coste mínimo para llegar a cada nodo desde el nodo inicial
-  std::vector<unsigned> pred; // Vector que almacena el predecesor de cada nodo en el camino mínimo encontrado
+  std::vector<int> coste; // Vector que almacena el coste minimo para llegar a cada nodo desde el nodo inicial
+  std::vector<unsigned> pred; // Vector que almacena el predecesor de cada nodo en el camino minimo encontrado
   coste.resize(n, maxint); // Inicializamos el vector coste con valores infinitos, ya que no sabemos el costo de llegar a cada nodo
-  pred.resize(n, 0); // Inicializamos el vector pred con 0 en cada posición, ya que aún no conocemos los predecesores
+  pred.resize(n, 0); // Inicializamos el vector pred con 0 en cada posicion, ya que aun no conocemos los predecesores
   std::vector<bool> M; // Vector que indica si un nodo ha sido visitado o no
-  M.resize(n, false); // Inicializamos M en falso, ya que aún no hemos visitado ningún nodo
-  coste[nodo_inicio] = 0; // Inicializamos el costo del nodo inicial a 0, ya que no tiene costo llegar a él mismo
-  pred[nodo_inicio] = 0; // El predecesor del nodo inicial es él mismo
+  M.resize(n, false); // Inicializamos M en falso, ya que aun no hemos visitado ningun nodo
+  coste[nodo_inicio] = 0; // Inicializamos el costo del nodo inicial a 0, ya que no tiene costo llegar a el mismo
+  pred[nodo_inicio] = 0; // El predecesor del nodo inicial es el mismo
   M[nodo_inicio] = true; // Marcamos el nodo inicial como visitado
 
   while(contador_T != (n - 1)) { // Mientras no hayamos visitado todos los nodos
     for(int i = 0; i < LS[nodo_inicio].size(); i++) { // Iteramos por la lista de adyacencia del nodo actual
       if(M[LS[nodo_inicio][i].j] == false) { // Si el nodo adyacente no ha sido visitado
         if(coste[LS[nodo_inicio][i].j] > LS[nodo_inicio][i].c ){ // Si el costo para llegar al nodo adyacente es mayor que el costo de la arista que lo conecta
-          coste[LS[nodo_inicio][i].j] = LS[nodo_inicio][i].c; // Actualizamos el costo mínimo para llegar al nodo adyacente
-          pred[LS[nodo_inicio][i].j] = nodo_inicio; // Actualizamos el predecesor del nodo adyacente en el camino mínimo
+          coste[LS[nodo_inicio][i].j] = LS[nodo_inicio][i].c; // Actualizamos el costo minimo para llegar al nodo adyacente
+          pred[LS[nodo_inicio][i].j] = nodo_inicio; // Actualizamos el predecesor del nodo adyacente en el camino minimo
         }
       }
     }
@@ -505,12 +505,12 @@ void GRAFO::Prim(){
   std::cout << endl;
 }
 
-// Se define la función MostrarCamino, que se utiliza para mostrar el camino desde el nodo de partida hasta un nodo dado.
+// Se define la funcion MostrarCamino, que se utiliza para mostrar el camino desde el nodo de partida hasta un nodo dado.
 void MostrarCamino(unsigned s, unsigned i, const vector<unsigned> &pred) 
 {
-	if (i != s) // Si el nodo actual no es igual al nodo de partida, se ejecuta el siguiente bloque de código.
+	if (i != s) // Si el nodo actual no es igual al nodo de partida, se ejecuta el siguiente bloque de codigo.
     {
-		MostrarCamino(s,pred[i],pred); // Se llama recursivamente a la función para mostrar el camino desde el nodo de partida hasta el nodo predecesor.
+		MostrarCamino(s,pred[i],pred); // Se llama recursivamente a la funcion para mostrar el camino desde el nodo de partida hasta el nodo predecesor.
 		cout << pred[i]+1 << " - ";  // Se muestra el nodo predecesor y se agrega un guion para separar los nodos del camino.
     }
 }
@@ -518,13 +518,13 @@ void MostrarCamino(unsigned s, unsigned i, const vector<unsigned> &pred)
 
 
 
-// Esta función implementa el algoritmo de Dijkstra para encontrar el camino más corto desde un nodo de origen hasta todos los demás nodos en un grafo ponderado.
-// El parámetro "comparaciones" se utiliza para contar el número de comparaciones que se hacen durante la ejecución del algoritmo.
-// El parámetro "s" es el nodo de origen desde el que se inicia la búsqueda del camino más corto.
+// Esta funcion implementa el algoritmo de Dijkstra para encontrar el camino mas corto desde un nodo de origen hasta todos los demas nodos en un grafo ponderado.
+// El parametro "comparaciones" se utiliza para contar el numero de comparaciones que se hacen durante la ejecucion del algoritmo.
+// El parametro "s" es el nodo de origen desde el que se inicia la busqueda del camino mas corto.
 void GRAFO::Dijkstra_(double &comparaciones, unsigned s) {
-  vector<bool> PermanentementeEtiquetado;// Se crean tres vectores para almacenar información sobre los nodos: PermanentementeEtiquetado para marcar los nodos que ya se han etiquetado de forma permanente.
-  vector<int> d;                        // d para almacenar las etiquetas de distancia y pred para almacenar los predecesores en el camino más corto.
-  vector<unsigned> pred;               // pred para almacenar los predecesores en el camino más corto.
+  vector<bool> PermanentementeEtiquetado;// Se crean tres vectores para almacenar informacion sobre los nodos: PermanentementeEtiquetado para marcar los nodos que ya se han etiquetado de forma permanente.
+  vector<int> d;                        // d para almacenar las etiquetas de distancia y pred para almacenar los predecesores en el camino mas corto.
+  vector<unsigned> pred;               // pred para almacenar los predecesores en el camino mas corto.
   int min;
   unsigned candidato = s;
   // Al principio no hay nodos permanente etiquetados
@@ -541,22 +541,22 @@ void GRAFO::Dijkstra_(double &comparaciones, unsigned s) {
   do {
   min = maxint;
   /* Buscamos un nodo candidato a ser permanentemente etiquedado: aquel de
-  entre los no permanentemente etiquetados, es decir, en el almacén con menor
+  entre los no permanentemente etiquetados, es decir, en el almacen con menor
   etiqueta distancia no infinita. */
  
   // Evaluamos los caminos.
   // Si existe ese candidato, lo etiquetamos permanentemente y usamos los arcos de la lista de sucesores para buscar atajos.Esto lo hacemos mientras haya candidatos
 
     for (unsigned k = 0; k < LS[candidato].size(); k++){ // Este bucle recorre los sucesores del nodo candidato en el grafo.
-      if(PermanentementeEtiquetado[LS[candidato][k].j] == false){ // Comprueba si el sucesor no está permanentemente etiquetado.
+      if(PermanentementeEtiquetado[LS[candidato][k].j] == false){ // Comprueba si el sucesor no esta permanentemente etiquetado.
         comparaciones++;
-        if ((d[LS[candidato][k].j]) > (d[candidato] + LS[candidato][k].c)){   // Comprueba si se encuentra un camino más corto a través del nodo candidato.
+        if ((d[LS[candidato][k].j]) > (d[candidato] + LS[candidato][k].c)){   // Comprueba si se encuentra un camino mas corto a traves del nodo candidato.
           d[LS[candidato][k].j] = (d[candidato] + LS[candidato][k].c);
           pred[LS[candidato][k].j] = candidato;
         }
       }
     }
-  for(int i = 0; i < n; i++) { // Este bucle busca el nodo no permanentemente etiquetado con la etiqueta de distancia mínima.
+  for(int i = 0; i < n; i++) { // Este bucle busca el nodo no permanentemente etiquetado con la etiqueta de distancia minima.
     if ((PermanentementeEtiquetado[i] == false) && (d[i] < min)) {
       candidato = i;
       min = d[i];
@@ -566,7 +566,7 @@ void GRAFO::Dijkstra_(double &comparaciones, unsigned s) {
   PermanentementeEtiquetado[candidato] = true; // Se marca el nodo candidato como permanentemente etiquetado.
  
   } while (min < maxint); // Se repite el bucle mientras haya nodos no permanentemente etiquetados con etiquetas de distancia finitas.
-    std::cout << endl; // Se imprimen los resultados de los caminos más cortos y sus longitudes.
+    std::cout << endl; // Se imprimen los resultados de los caminos mas cortos y sus longitudes.
     for (unsigned i = 0; i < n; i++) {
       if (i != s) {
         if(PermanentementeEtiquetado[i] == true) {
@@ -579,19 +579,19 @@ void GRAFO::Dijkstra_(double &comparaciones, unsigned s) {
       }    
     }
     std::cout << endl;
-    std::cout << "Ha realizado un total de: " << comparaciones << " comparaciones." << endl; // Se muestra el número total de comparaciones realizadas durante la ejecución del algoritmo.
+    std::cout << "Ha realizado un total de: " << comparaciones << " comparaciones." << endl; // Se muestra el numero total de comparaciones realizadas durante la ejecucion del algoritmo.
 }
 
 
 
-// Se inicia la función BellmanFordEnd_, que calcula el camino más corto desde un nodo de origen utilizando el algoritmo de Bellman-Ford.
+// Se inicia la funcion BellmanFordEnd_, que calcula el camino mas corto desde un nodo de origen utilizando el algoritmo de Bellman-Ford.
 void GRAFO::BellmanFordEnd_(double &comparaciones, unsigned s) {
   // Se crean los vectores para almacenar las distancias y los predecesores.
   vector<int> d;
   vector<unsigned> pred;
   unsigned numeromejoras = 0;
   bool mejora;
- // Se establece el tamaño de los vectores de distancias y predecesores.
+ // Se establece el tamanyo de los vectores de distancias y predecesores.
   d.resize(n,maxint);
   pred.resize(n,UERROR);
   // Se inicializa la distancia del nodo de origen como 0 y se establece como su propio predecesor.
@@ -606,7 +606,7 @@ void GRAFO::BellmanFordEnd_(double &comparaciones, unsigned s) {
         unsigned destino = LS[i][j].j;
         int peso = LS[i][j].c;
         comparaciones++;
-        // Si se encuentra una distancia más corta al destino, se actualizan las distancias y predecesores.
+        // Si se encuentra una distancia mas corta al destino, se actualizan las distancias y predecesores.
         if(d[destino] > (d[i] + peso)){
           d[destino] = d[i] + peso;
           pred[destino] = i;
@@ -633,12 +633,12 @@ void GRAFO::BellmanFordEnd_(double &comparaciones, unsigned s) {
 }
 
 
-// Se inicia la función ComparativaCM, que realiza una comparativa entre los algoritmos de Dijkstra y Bellman-Ford.
+// Se inicia la funcion ComparativaCM, que realiza una comparativa entre los algoritmos de Dijkstra y Bellman-Ford.
 void GRAFO::ComparativaCM(){
   unsigned s; // Variable para almacenar el nodo de partida.
   double CompDijkstra = 0.0; // Variable para contar las comparaciones realizadas por el algoritmo de Dijkstra.
   double CompBellman = 0.0;  // Variable para contar las comparaciones realizadas por el algoritmo de Bellman-Ford.
-  std::cout << "Camino mínimo  de un nodo al resto:\n";
+  std::cout << "Camino minimo  de un nodo al resto:\n";
   std::cout << "Nodo de partida? [1-" << n << "]: "; // Se solicita al usuario el nodo de partida.
 
   std::cin >> s;
@@ -654,9 +654,9 @@ void GRAFO::ComparativaCM(){
   
   std::cout << endl;
   // Se muestra la comparativa entre los algoritmos de Dijkstra y Bellman-Ford.
-  std::cout << "El algoritmo de general basado en la condición de optimalidad, Bellman, Ford, End, ha realizado ";
+  std::cout << "El algoritmo de general basado en la condicion de optimalidad, Bellman, Ford, End, ha realizado ";
   std::cout << CompBellman / CompDijkstra;
-  std::cout << " veces más comparaciones para mejorar la etiqueta distancia que Dijkstra\n" << std::endl;;
+  std::cout << " veces mas comparaciones para mejorar la etiqueta distancia que Dijkstra\n" << std::endl;;
 }
 
 
@@ -669,7 +669,7 @@ void GRAFO::ComparativaCM(){
     vector<unsigned> prenum(n, 0);
     vector<unsigned> postnum(n, 0);
 
-    // Índices para prenum y postnum
+    // Indices para prenum y postnum
     unsigned prenum_ind = 0;
     unsigned postnum_ind = 0;
 
@@ -679,7 +679,7 @@ void GRAFO::ComparativaCM(){
     // Verifica si todos los nodos fueron visitados
     for (bool v : visitado) {
         if (!v) {
-            return false; // Si algún nodo no fue visitado, el grafo no es conexo
+            return false; // Si algun nodo no fue visitado, el grafo no es conexo
         }
     }
     return true; // Si todos los nodos fueron visitados, el grafo es conexo
@@ -706,7 +706,7 @@ void GRAFO::Kruskal()
   for (unsigned i = 0; i < n; i++) {
       // Para cada nodo, recorremos todas las aristas en su lista de adyacencia
       for (unsigned j = 0; j < LS[i].size(); j++) {
-          // Solo consideramos la arista si el nodo actual es menor que el nodo al que está conectado
+          // Solo consideramos la arista si el nodo actual es menor que el nodo al que esta conectado
           // Esto es para evitar contar dos veces la misma arista en un grafo no dirigido
          if (dirigido == 1 || i < LS[i][j].j) {
               // Guardamos los extremos y el peso de la arista en el vector Aristas
@@ -717,13 +717,13 @@ void GRAFO::Kruskal()
       }
   }
 
-  /*Inicializamos el registro de componentes conexas: cada nodo está en
+  /*Inicializamos el registro de componentes conexas: cada nodo esta en
   su componente conexa*/
-  vector <unsigned> Raiz; // Declara un vector llamado Raiz para almacenar las raíces de las componentes conexas.
-  Raiz.resize(n); // Redimensiona el vector Raiz para que tenga un tamaño igual al número de nodos del grafo.
-  for (unsigned q = 0;q < n; q++) // Inicia un bucle para inicializar las raíces de las componentes conexas de cada nodo.
+  vector <unsigned> Raiz; // Declara un vector llamado Raiz para almacenar las raices de las componentes conexas.
+  Raiz.resize(n); // Redimensiona el vector Raiz para que tenga un tamanyo igual al numero de nodos del grafo.
+  for (unsigned q = 0;q < n; q++) // Inicia un bucle para inicializar las raices de las componentes conexas de cada nodo.
   {
-  Raiz[q]=q; // Asigna a cada nodo como su propia raíz, indicando que inicialmente cada nodo forma su propia componente conexa.
+  Raiz[q]=q; // Asigna a cada nodo como su propia raiz, indicando que inicialmente cada nodo forma su propia componente conexa.
   };
 
   //! Verifica si el grafo es conexo
@@ -751,7 +751,7 @@ void GRAFO::Kruskal()
     // Miramos si los extremos de la arista en la posicion head estan en componentes conexas distintas,
     // y si es asi, metemos esa arista en el MST fusionando las componentes conexas, es decir, unificando etiquetas.
     if (Raiz[Aristas[head].extremo1] != Raiz[Aristas[head].extremo2]) {
-      int kill = Raiz[Aristas[head].extremo1];  // Almacena el valor de la raíz del componente conexo del extremo 1 de la arista en la posición head.
+      int kill = Raiz[Aristas[head].extremo1];  // Almacena el valor de la raiz del componente conexo del extremo 1 de la arista en la posicion head.
       for (unsigned k = 0; k < n; k++) {       // Itera sobre todos los nodos del grafo.
         if (Raiz[k] == kill) { 
           Raiz[k] = Raiz[Aristas[head].extremo2];
@@ -774,12 +774,12 @@ void GRAFO::Kruskal()
 }
 
 
-// Se define la función MostrarCaminoPDM, que se utiliza para mostrar el camino desde el nodo de partida hasta un nodo dado.
+// Se define la funcion MostrarCaminoPDM, que se utiliza para mostrar el camino desde el nodo de partida hasta un nodo dado.
 void MostrarCaminoPDM(unsigned s, unsigned i, const vector<unsigned> &pred) 
 {
-	if (i != s) // Si el nodo actual no es igual al nodo de partida, se ejecuta el siguiente bloque de código.
+	if (i != s) // Si el nodo actual no es igual al nodo de partida, se ejecuta el siguiente bloque de codigo.
     {
-		MostrarCaminoPDM(s,pred[i],pred); // Se llama recursivamente a la función para mostrar el camino desde el nodo de partida hasta el nodo predecesor.
+		MostrarCaminoPDM(s,pred[i],pred); // Se llama recursivamente a la funcion para mostrar el camino desde el nodo de partida hasta el nodo predecesor.
     std::cout << " -> " << i+1;  // Se muestra el nodo predecesor y se agrega un guion para separar los nodos del camino.
     }
   else

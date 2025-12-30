@@ -1,15 +1,15 @@
 /*
  * Proyecto: Grafos y Algoritmos en C++
- * Autor: Iván Mesa Domínguez
+ * Autor: Ivan Mesa Dominguez
  * GitHub: https://github.com/IvnMD
- * Año: 2024
+ * Anyo: 2024
  *
- * Descripción:
- * Implementación de estructuras de grafos y algoritmos asociados
+ * Descripcion:
+ * Implementacion de estructuras de grafos y algoritmos asociados
  * (Kruskal, lectura de grafos desde fichero, pruebas y validaciones).
  *
- * Contexto académico:
- * Universidad de La Laguna – Ingeniería Informática
+ * Contexto academico:
+ * Universidad de La Laguna – Ingenieria Informatica
  *
  * Creado por IvnMD
  */
@@ -48,7 +48,7 @@ void menu (unsigned dirigido, char &opcion)
             cout << "a. Mostrar la lista de [a]dyacencia del grafo" << endl;
             cout << "g. Mostrar camino minimo usando el al[g]oritmo de Prim" << endl;
             cout << "k. Mostrar MST: [k]ruskal" << endl;
-	    //Aqui se añaden mas opciones al menu del grafo no dirigido
+	    //Aqui se anyaden mas opciones al menu del grafo no dirigido
             }
     else
             {
@@ -72,7 +72,7 @@ void menu (unsigned dirigido, char &opcion)
 };
 
 
-// El principal es simplemente un gestor de menu, diferenciando acciones para dirigido y para no dirigido, y un men� inicial si no hay un grafo cargado
+// El principal es simplemente un gestor de menu, diferenciando acciones para dirigido y para no dirigido, y un menu inicial si no hay un grafo cargado
 int main(int argc, char *argv[])
 {
     int error_apertura;
